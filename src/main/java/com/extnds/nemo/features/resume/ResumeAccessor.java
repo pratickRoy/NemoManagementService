@@ -4,7 +4,6 @@ import com.extnds.nemo.commons.exceptions.InternalServerException;
 import com.extnds.nemo.commons.exceptions.ValidationException;
 import com.extnds.nemo.features.resume.model.BasicDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import lombok.AllArgsConstructor;
@@ -29,7 +28,6 @@ public class ResumeAccessor {
     private enum ResumeKeys {
 
         BASIC_DETAILS("basicDetails"),
-        DATABASE_NAME("resume"),
         _ID("_id");
 
         private String key;
@@ -40,11 +38,11 @@ public class ResumeAccessor {
     private Validator validator;
 
     @Autowired
-    public ResumeAccessor(MongoClient mongoClient,
+    public ResumeAccessor(MongoDatabase mongoDatabase,
                           ObjectMapper objectMapper,
                           Validator validator) {
 
-        this.database = mongoClient.getDatabase(ResumeKeys.DATABASE_NAME.getKey());
+        this.database = mongoDatabase;
         this.objectMapper = objectMapper;
         this.validator = validator;
     }
