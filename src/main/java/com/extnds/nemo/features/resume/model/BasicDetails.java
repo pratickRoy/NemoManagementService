@@ -4,10 +4,10 @@ import com.extnds.nemo.commons.constraints.mobile.Mobile;
 import com.extnds.nemo.features.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.URL;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 

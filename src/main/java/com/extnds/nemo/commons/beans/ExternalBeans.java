@@ -10,22 +10,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ExternalBeans {
 
-    @Value("${mongo.username}") private String USERNAME;
-    @Value("${mongo.prefix}")   private String MONGO_PREFIX;
-    @Value("${mongo.url}")      private String URL;
-    @Value("${mongo.port}")     private String PORT;
-    @Value("${mongo.password}") private String PASSWORD;
-    @Value("${mongo.database}") private String DATABASE;
-
     @Bean
-    public MongoDatabase mongoDatabase() {
+    public MongoDatabase mongoDatabase(@Value("${mongo.uri}")  String uri) {
 
-        return new MongoClient(new MongoClientURI(new StringBuilder(MONGO_PREFIX)
-            .append(USERNAME).append(':')
-            .append(PASSWORD).append('@')
-            .append(URL).append(':')
-            .append(PORT).append('/')
-            .append(DATABASE).toString()))
-            .getDatabase(DATABASE);
+        MongoClientURI mongoClientURI = new MongoClientURI(uri);
+        return new MongoClient(mongoClientURI)
+            .getDatabase(mongoClientURI.getDatabase());
     }
 }

@@ -1,7 +1,21 @@
 group 'com.extnds.nemo'
 version '1.0'
 
+buildscript {
+    ext {
+        springBootVersion = '1.5.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
 apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 
@@ -13,6 +27,9 @@ dependencies {
 
     // MVC Framework
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.6.RELEASE'
+
+    // Server
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '1.5.6.RELEASE'
 
     // Validation Framework
     compile group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.1.Final'
@@ -26,4 +43,25 @@ dependencies {
 
     // Test Framework
     testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // ToDo : Doing this to force 2.0.0 version, replace with better way of achieving dependency resolution
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
+}
+
+war {
+    baseName = 'nemo-management-service'
+    version =  '1.0.0'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+            'Main-Class': 'com.extnds.nemo.Application'
+        )
+    }
+}
+
+bootRepackage {
+    withJarTask jar
 }
