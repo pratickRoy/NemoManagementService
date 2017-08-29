@@ -1,21 +1,18 @@
-package com.extnds.nemo.commons.beans;
+package com.extnds.nemo.managementservice.commons.beans;
 
-import com.extnds.nemo.features.resume.ResumeAccessor;
+import com.extnds.nemo.managementservice.features.resume.ResumeAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.client.MongoDatabase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.validation.Validator;
 
 @Configuration
 public class AccessorBeans {
 
     @Bean
     public ResumeAccessor resumeAccessor(MongoDatabase mongoDatabase,
-                                         ObjectMapper objectMapper,
-                                         Validator validator) {
+                                         ObjectMapper objectMapper) {
 
-        return new ResumeAccessor(mongoDatabase, objectMapper, validator);
+        return new ResumeAccessor(mongoDatabase, objectMapper);
     }
 }

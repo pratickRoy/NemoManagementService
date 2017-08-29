@@ -1,4 +1,4 @@
-package com.extnds.nemo.commons.beans;
+package com.extnds.nemo.managementservice.commons.beans;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;

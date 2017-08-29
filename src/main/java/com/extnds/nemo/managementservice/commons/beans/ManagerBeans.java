@@ -1,7 +1,7 @@
-package com.extnds.nemo.commons.beans;
+package com.extnds.nemo.managementservice.commons.beans;
 
-import com.extnds.nemo.features.resume.ResumeAccessor;
-import com.extnds.nemo.features.resume.ResumeManager;
+import com.extnds.nemo.managementservice.features.resume.ResumeAccessor;
+import com.extnds.nemo.managementservice.features.resume.ResumeManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

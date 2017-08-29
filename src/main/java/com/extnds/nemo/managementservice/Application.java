@@ -1,4 +1,4 @@
-package com.extnds.nemo;
+package com.extnds.nemo.managementservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

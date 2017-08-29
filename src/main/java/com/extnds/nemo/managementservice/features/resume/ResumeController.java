@@ -1,7 +1,7 @@
-package com.extnds.nemo.features.resume;
+package com.extnds.nemo.managementservice.features.resume;
 
-import com.extnds.nemo.features.BaseController;
-import com.extnds.nemo.features.resume.model.BasicDetails;
+import com.extnds.nemo.managementservice.features.BaseController;
+import com.extnds.nemo.models.features.resume.BasicDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

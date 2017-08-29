@@ -1,8 +1,7 @@
-package com.extnds.nemo.features.resume;
+package com.extnds.nemo.managementservice.features.resume;
 
-import com.extnds.nemo.commons.exceptions.InternalServerException;
-import com.extnds.nemo.commons.exceptions.ValidationException;
-import com.extnds.nemo.features.resume.model.BasicDetails;
+import com.extnds.nemo.managementservice.commons.exceptions.InternalServerException;
+import com.extnds.nemo.models.features.resume.BasicDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -12,12 +11,9 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -35,16 +31,13 @@ public class ResumeAccessor {
 
     private MongoDatabase database;
     private ObjectMapper objectMapper;
-    private Validator validator;
 
     @Autowired
     public ResumeAccessor(MongoDatabase mongoDatabase,
-                          ObjectMapper objectMapper,
-                          Validator validator) {
+                          ObjectMapper objectMapper) {
 
         this.database = mongoDatabase;
         this.objectMapper = objectMapper;
-        this.validator = validator;
     }
 
     Optional<BasicDetails> fetchBasicDetails(String id) {
@@ -70,10 +63,7 @@ public class ResumeAccessor {
             throw new InternalServerException(e);
         }
 
-        Set<ConstraintViolation<BasicDetails>> violations = validator.validate(basicDetails);
-        if(!violations.isEmpty()) {
-            throw new ValidationException(violations);
-        }
+        basicDetails.validate();
         return Optional.of(basicDetails);
     }
 }

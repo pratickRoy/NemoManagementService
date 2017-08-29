@@ -46,6 +46,9 @@ dependencies {
 
     // ToDo : Doing this to force 2.0.0 version, replace with better way of achieving dependency resolution
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
+
+    // ToDo : Replace with better way to add local dependency
+    compile files('src/main/resources/nemo-models-1.0.jar')
 }
 
 war {
@@ -57,7 +60,7 @@ jar {
     manifest {
         attributes(
             'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-            'Main-Class': 'com.extnds.nemo.Application'
+            'Main-Class': 'com.extnds.nemo.managementservice.Application'
         )
     }
 }

@@ -1,7 +1,8 @@
-package com.extnds.nemo.features.resume;
+package com.extnds.nemo.managementservice.features.resume;
 
-import com.extnds.nemo.features.BaseManager;
-import com.extnds.nemo.features.resume.model.BasicDetails;
+import com.extnds.nemo.managementservice.features.BaseManager;
+
+import com.extnds.nemo.models.features.resume.BasicDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;

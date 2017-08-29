@@ -1,4 +1,4 @@
-package com.extnds.nemo.commons.exceptions;
+package com.extnds.nemo.managementservice.commons.exceptions;
 
 public class InternalServerException extends RuntimeException {
 
